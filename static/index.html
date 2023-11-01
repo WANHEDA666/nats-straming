@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Go Data Fetcher</title>
+</head>
+<body>
+<h1>Fetch Data from Go</h1>
+<input type="number" id="inputId" placeholder="Enter an ID">
+<button onclick="fetchData()">Fetch Data</button>
+<div id="output"></div>
+
+<script>
+    function fetchData() {
+        const inputId = document.getElementById("inputId").value;
+        const url = `/getData?id=${inputId}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const outputDiv = document.getElementById("output");
+                outputDiv.innerHTML = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    }
+</script>
+</body>
+</html>
